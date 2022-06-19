@@ -41,7 +41,7 @@ import java.util.Collections;
 public class MainActivity extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager2 viewPager2;
-    public TextView cashbal, bankbal;
+    public static TextView cashbal, bankbal;
     FirebaseDatabase firebaseDatabase;
     ImageButton print ;
     ArrayList<Record> rcrds = new ArrayList<>();
@@ -49,8 +49,9 @@ public class MainActivity extends AppCompatActivity {
     VPAdapter adapter;
 
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         tabLayout = findViewById(R.id.tabLayout);
@@ -58,25 +59,12 @@ public class MainActivity extends AppCompatActivity {
         cashbal = findViewById(R.id.cashbal);
         print = findViewById(R.id.printbtn);
         bankbal = findViewById(R.id.bankbal);
-
+        updatebal();
         Intent i = getIntent();
         String name = i.getStringExtra("name");
        // Toast.makeText(getApplicationContext(), "" + name, Toast.LENGTH_SHORT).show();
         firebaseDatabase = FirebaseDatabase.getInstance();
-        firebaseDatabase.getReference().child("pranjal@gmail").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.hasChild("cashbal")) {
-                    cashbal.setText(snapshot.child("cashbal").getValue().toString());
-                    bankbal.setText(snapshot.child("bankbal").getValue().toString());
-                }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
 
         print.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -192,6 +180,23 @@ public class MainActivity extends AppCompatActivity {
             myPdfDocument.close();
         }
 
+        public void updatebal()
+        {
+            FirebaseDatabase.getInstance().getReference().child("pranjal@gmail").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.hasChild("cashbal")) {
+                        cashbal.setText(snapshot.child("cashbal").getValue().toString());
+                        bankbal.setText(snapshot.child("bankbal").getValue().toString());
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
 
 
 
@@ -242,6 +247,9 @@ public class MainActivity extends AppCompatActivity {
 
         return rcrds;
     }
+
+
+
 
 
 

@@ -1,6 +1,8 @@
 package com.example.kharchapani;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.icu.util.Calendar;
@@ -17,6 +19,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -97,7 +100,7 @@ public class add_expense extends Fragment {
         dataref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                openingbal = snapshot.child("cashbal").getValue(Integer.class);
+                openingbal = snapshot.child("cashbal").getValue(Integer.class)+snapshot.child("bankbal").getValue(Integer.class);
             }
 
             @Override
@@ -256,7 +259,7 @@ public class add_expense extends Fragment {
 
                 if(dateid.equals(" ")||((TextUtils.isEmpty(amount_editText.getText()))||account.equals(null)||(category.equals(null)&&(categedittext.getVisibility()!=View.GONE))))
                 {
-                    Toast.makeText(getActivity(), "Please fill/select all the fields"+category, Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), "Please fill/select all the fields"+dateid, Toast.LENGTH_LONG).show();
                 }
 
                 else{
@@ -271,30 +274,28 @@ public class add_expense extends Fragment {
                         try {
                             amount = Integer.parseInt(amount_editText.getText().toString());
                             id = dataref.push().getKey();
-
-                            Thread.sleep(2000);
-                            Toast.makeText(getActivity(), ""+openingbal, Toast.LENGTH_SHORT).show();
                             Record record = new Record(sdf2.format(calender_select.getTime()), account, amount, openingbal, (openingbal-amount), category,id);
-                            Toast.makeText(getActivity(), ""+record.getOpeningbal(), Toast.LENGTH_SHORT).show();
                             dataref.child("Exepenses").child(dateid.substring(4,8)).child(dateid.substring(2,4)).child(dateid).child(id).setValue(record);
 
                                 dataref.addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                        MainActivity act = ((MainActivity) getActivity());
+
                                         if(account.equals("Cash💵"))
                                         {
                                             int newcashbal =  snapshot.child("cashbal").getValue(Integer.class)-amount;
                                             dataref.child("cashbal").setValue(newcashbal);
-                                            act.cashbal.setText(""+newcashbal);
-
+                                            ((MainActivity) getActivity()).updatebal();
+                                            hideKeyboard(getActivity());
+                                            getParentFragmentManager().popBackStack();
                                         }
                                         if(account.equals("Bank🏦"))
                                         {
-                                            int newcashbal =  snapshot.child("cashbal").getValue(Integer.class)-amount;
+                                            int newcashbal =  snapshot.child("bankbal").getValue(Integer.class)-amount;
                                             dataref.child("bankbal").setValue(newcashbal);
-                                            act.bankbal.setText(""+newcashbal);
-
+                                            ((MainActivity) getActivity()).updatebal();
+                                            hideKeyboard(getActivity());
+                                            getParentFragmentManager().popBackStack();
                                         }
 
 
@@ -316,15 +317,7 @@ public class add_expense extends Fragment {
                             Toast.makeText(getActivity(), ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                         dateid="";
-                    try
-                    {
-                        Thread.sleep(1000);
-                    }
-                    catch(InterruptedException ex)
-                    {
-                        Thread.currentThread().interrupt();
-                    }
-                        getActivity().getSupportFragmentManager().popBackStack();
+
 
 
 
@@ -334,5 +327,15 @@ public class add_expense extends Fragment {
 
             }
         });
+    }
+    public static void hideKeyboard(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        //Find the currently focused view, so we can grab the correct window token from it.
+        View view = activity.getCurrentFocus();
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if (view == null) {
+            view = new View(activity);
+        }
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 }

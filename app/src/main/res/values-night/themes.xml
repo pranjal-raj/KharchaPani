@@ -12,11 +12,18 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
-
-
-
+0
 
     </style>
+
+    <style name="tab2" parent="@android:style/TextAppearance.Widget.TabWidget">
+        <item name="tabSelectedTextColor">@color/chipgreen</item>
+        <item name="tabTextColor">#5D6541</item>
+        <item name="font">@font/radio_canada</item>
+        <item name="fontFamily">@font/radio_canada</item>
+    </style>
+
+
 
     <style name="CustomChipChoice" parent="@style/Widget.MaterialComponents.Chip.Choice">
         <item name="chipBackgroundColor">@color/background_color_chip_state_list</item>

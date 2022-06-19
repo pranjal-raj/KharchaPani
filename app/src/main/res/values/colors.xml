@@ -13,6 +13,8 @@
     <color name="colorAccent">#F4FFD5</color>
     <color name="themeColor">#EFFFC4</color>
 
+    <color name="yellow_brown">#55651E</color>
+
     <!--normal colors-->
     <color name="darkTextColor">#020000</color>
 

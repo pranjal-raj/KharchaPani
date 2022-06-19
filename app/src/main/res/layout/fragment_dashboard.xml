@@ -13,7 +13,11 @@
         android:id="@+id/linearLayout"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-
+        android:background="#00FFFFFF"
+        app:tabTextColor="@color/black"
+        app:tabIndicatorColor="#ADA1A1A1"
+        app:tabTextAppearance="@style/tab2"
+        app:tabSelectedTextColor="@color/chipgreen"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -24,12 +28,13 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Day"
+            style="@style/tab2"
+            android:background="@color/black"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="19dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
 
 
         <com.google.android.material.tabs.TabItem
@@ -38,6 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Month"
+
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="19dp"
@@ -50,10 +56,12 @@
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/year_btn"
+            style="tab2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Year"
+
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="19dp"
@@ -115,8 +123,9 @@
         android:id="@+id/dateview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/radio_canada"
         android:text="June 5 - June 11"
-        android:textColor="@color/black"
+        android:textColor="#5D6541"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/prev_btn"
         app:layout_constraintEnd_toStartOf="@+id/next_btn"
@@ -131,10 +140,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dateview" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:backgroundTint="#54000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
@@ -142,15 +152,18 @@
         <jahirfiquitiva.libs.fabsmenu.FABsMenuLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
             app:fabs_menu_clickableOverlay="true"
             app:fabs_menu_overlayColor="#48000000">
 
             <!-- FABs Menu is the main view. It will contain all the items FABs and it create the menu fab itself -->
             <jahirfiquitiva.libs.fabsmenu.FABsMenu
                 android:id="@+id/fabs_menu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="bottom|end"
                 android:backgroundTint="#68000000"
                 android:clipChildren="false"
@@ -179,9 +192,9 @@
                     android:id="@+id/green_fab"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:clickable="true"
                     app:backgroundTint="@color/white"
                     app:fabSize="mini"
-                    android:clickable="true"
                     app:fab_title="Add Entry Manually"
                     app:rippleColor="#73ED7E"
                     app:srcCompat="@drawable/ic_pencil" />
@@ -189,8 +202,7 @@
             </jahirfiquitiva.libs.fabsmenu.FABsMenu>
 
         </jahirfiquitiva.libs.fabsmenu.FABsMenuLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+    </RelativeLayout>
 
 
 

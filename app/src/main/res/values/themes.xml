@@ -52,6 +52,13 @@
         <item name="android:textColor">@color/darkTextColor</item>
     </style>
 
+    <style name="tab2" parent="@android:style/TextAppearance.Widget.TabWidget">
+        <item name="tabSelectedTextColor">@color/chipgreen</item>
+        <item name="tabTextColor">#5D6541</item>
+        <item name="font">@font/radio_canada</item>
+        <item name="fontFamily">@font/radio_canada</item>
+    </style>
+
     <style name="parent">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>

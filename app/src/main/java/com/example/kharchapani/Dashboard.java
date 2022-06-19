@@ -23,6 +23,8 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -54,16 +56,13 @@ public class Dashboard extends Fragment {
     AppCompatButton prev, next;
     TextView dateview;
     String centretext;
-    TextView cashbal,bankbal;
+    TextView cashbal, bankbal;
     float arr[];
 
 
     public Dashboard() {
         // Required empty public constructor
     }
-
-
-
 
 
     @Override
@@ -92,27 +91,57 @@ public class Dashboard extends Fragment {
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         myref = firebaseDatabase.getReference().child("pranjal@gmail").child(type);
-       // dateview.setText(getCalculatedDate(calendar,"dd-MM-yyyy",0));
+        // dateview.setText(getCalculatedDate(calendar,"MMMM dd, yyyy",0));
         TabLayout tabLayout = view.findViewById(R.id.linearLayout);
         tabLayout.selectTab(tabLayout.getTabAt(0));
-        dateview.setText(getCalculatedDate(calendar,"dd-MM-yyyy",Calendar.DAY_OF_YEAR,0,myref));
+        dateview.setText(getCalculatedDate(calendar, "MMMM dd, yyyy", Calendar.DAY_OF_YEAR, 0, myref));
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                switch(tab.getText().toString())
+                {
+                    case "Day":
+                       // Calendar cal = Calendar.getInstance();
+                        dateview.setText(getCalculatedDate(calendar, "MMMM dd, yyyy", Calendar.DAY_OF_YEAR, 0, myref));
+                        break;
+                    case "Month":
+                        //Calendar calm = Calendar.getInstance();
+                        dateview.setText(getCalculatedDate(calendar, "MMMM", Calendar.MONTH, 0, myref));
+                        break;
+                    case "Year":
+                       // Calendar caly = Calendar.getInstance();
+                        dateview.setText(getCalculatedDate(calendar, "yyyy", Calendar.YEAR, 0, myref));
+                        break;
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
 
 
         prev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               switch (tabLayout.getTabAt(tabLayout.getSelectedTabPosition()).getText().toString())
-               {
-                   case "Day" :
-                       dateview.setText(getCalculatedDate(calendar,"dd-MM-yyyy",Calendar.DAY_OF_YEAR,-1,myref));
-                       break;
-                   case "Month" :
-                       dateview.setText(getCalculatedDate(calendar,"MMMM",Calendar.MONTH,-1,myref));
-                       break;
-                   case "Year" :
-                       dateview.setText(getCalculatedDate(calendar,"yyyy",Calendar.YEAR,-1,myref));
-                       break;
-               }
+                switch (tabLayout.getTabAt(tabLayout.getSelectedTabPosition()).getText().toString()) {
+                    case "Day":
+                        dateview.setText(getCalculatedDate(calendar, "MMMM dd, yyyy", Calendar.DAY_OF_YEAR, -1, myref));
+                        break;
+                    case "Month":
+                        dateview.setText(getCalculatedDate(calendar, "MMMM", Calendar.MONTH, -1, myref));
+                        break;
+                    case "Year":
+                        dateview.setText(getCalculatedDate(calendar, "yyyy", Calendar.YEAR, -1, myref));
+                        break;
+                }
 
 
             }
@@ -120,16 +149,15 @@ public class Dashboard extends Fragment {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                switch (tabLayout.getTabAt(tabLayout.getSelectedTabPosition()).getText().toString())
-                {
-                    case "Day" :
-                        dateview.setText(getCalculatedDate(calendar,"dd-MM-yyyy",Calendar.DAY_OF_YEAR,1,myref));
+                switch (tabLayout.getTabAt(tabLayout.getSelectedTabPosition()).getText().toString()) {
+                    case "Day":
+                        dateview.setText(getCalculatedDate(calendar, "MMMM dd, yyyy", Calendar.DAY_OF_YEAR, 1, myref));
                         break;
-                    case "Month" :
-                        dateview.setText(getCalculatedDate(calendar,"MMMM",Calendar.MONTH,1,myref));
+                    case "Month":
+                        dateview.setText(getCalculatedDate(calendar, "MMMM", Calendar.MONTH, 1, myref));
                         break;
-                    case "Year" :
-                        dateview.setText(getCalculatedDate(calendar,"yyyy",Calendar.YEAR,1,myref));
+                    case "Year":
+                        dateview.setText(getCalculatedDate(calendar, "yyyy", Calendar.YEAR, 1, myref));
                         break;
                 }
             }
@@ -142,23 +170,20 @@ public class Dashboard extends Fragment {
             @Override
             public void onMenuClicked(FABsMenu fabsMenu) {
                 super.onMenuClicked(fabsMenu); // Default implementation opens the menu on click
-                Toast.makeText(getActivity(), "You clicked", Toast.LENGTH_SHORT).show();
-                add= view.findViewById(R.id.green_fab);
+                //   Toast.makeText(getActivity(), "You clicked", Toast.LENGTH_SHORT).show();
+                add = view.findViewById(R.id.green_fab);
 
                 add.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View view)
-                    {
+                    public void onClick(View view) {
 
-                        if(type.equals("Exepenses")){
+                        if (type.equals("Exepenses")) {
 
-                            getParentFragmentManager().beginTransaction().replace(R.id.fcont,new add_expense()).addToBackStack(null).commit();
-                    }
-                        else if(type.equals("Income")){
-                            getParentFragmentManager().beginTransaction().replace(R.id.fcont,new add_income()).addToBackStack(null).commit();
+                            getParentFragmentManager().beginTransaction().replace(R.id.fcont, new add_expense()).addToBackStack(null).commit();
+                        } else if (type.equals("Income")) {
+                            getParentFragmentManager().beginTransaction().replace(R.id.fcont, new add_income()).addToBackStack(null).commit();
+                        } else {
                         }
-                        else
-                        {}
                     }
                 });
             }
@@ -174,8 +199,7 @@ public class Dashboard extends Fragment {
                 super.onMenuExpanded(fabsMenu);
 
             }
-        });
-    }
+        }); }
 
 
     public void setupPieChart(String centretext) {
@@ -185,33 +209,63 @@ public class Dashboard extends Fragment {
         piechart.setEntryLabelTextSize(8f);
         piechart.setCenterText(centretext);
         piechart.setCenterTextSize(16f);
+        piechart.setCenterTextColor(Color.parseColor("#5D6541"));
+
+
         piechart.getDescription().setEnabled(false);
     }
-    public void loadPieChart(float ff,float sf, float tf, float of){
+
+    public void loadPieChart(float ff, float sf, float tf, float of) {
         ArrayList<PieEntry> entries = new ArrayList<>();
-        String food="",studies="",transport="",other="";
-                    if(ff!=0){food="Food";}if(sf!=0){studies="Studies";}if(tf!=0){transport="Transport";}if(of!=0){other="Other";}
-                    entries.add(new PieEntry(ff,food));
-                    entries.add(new PieEntry(sf,studies));
-                    entries.add(new PieEntry(tf,transport));
-                    entries.add(new PieEntry(of,other));
-                    entries.add(new PieEntry(1 - (ff + sf + tf + of)));
-
-
-
-
+        String food = "", studies = "", transport = "", other = "";
+        if(getArguments().getString("order").equals("Exepenses")) {
+            if (ff != 0) {
+                food = "Food";
+            }
+            if (sf != 0) {
+                studies = "Studies";
+            }
+            if (tf != 0) {
+                transport = "Transport";
+            }
+            if (of != 0) {
+                other = "Other";
+            }
+            entries.add(new PieEntry(ff, food));
+            entries.add(new PieEntry(sf, studies));
+            entries.add(new PieEntry(tf, transport));
+            entries.add(new PieEntry(of, other));
+            entries.add(new PieEntry(1 - (ff + sf + tf + of)));
+        }
+        else {
+            if (ff != 0) {
+                food = "Gift";
+            }
+            if (sf != 0) {
+                studies = "Salary";
+            }
+            if (tf != 0) {
+                transport = "Interest";
+            }
+            if (of != 0) {
+                other = "Other";
+            }
+            entries.add(new PieEntry(ff, food));
+            entries.add(new PieEntry(sf, studies));
+            entries.add(new PieEntry(tf, transport));
+            entries.add(new PieEntry(of, other));
+            entries.add(new PieEntry(1 - (ff + sf + tf + of)));
+        }
 
 
         ArrayList<Integer> colors = new ArrayList<>();
-        for(int color : ColorTemplate.MATERIAL_COLORS)
-        {
+        for (int color : ColorTemplate.MATERIAL_COLORS) {
             colors.add(color);
         }
-        for(int color : ColorTemplate.VORDIPLOM_COLORS)
-        {
+        for (int color : ColorTemplate.VORDIPLOM_COLORS) {
             colors.add(color);
         }
-        PieDataSet piedataset = new PieDataSet(entries,"Expenses");
+        PieDataSet piedataset = new PieDataSet(entries, "Expenses");
         piedataset.setColors(colors);
 
         PieData data = new PieData(piedataset);
@@ -226,22 +280,21 @@ public class Dashboard extends Fragment {
         piechart.animateY(600);
     }
 
-    public String getCalculatedDate(Calendar calendar,String dateFormat, int operation, int days, DatabaseReference myre) {
-         Calendar cal = calendar;
+    public String getCalculatedDate(Calendar calendar, String dateFormat, int operation, int days, DatabaseReference myre) {
+        Calendar cal = calendar;
         SimpleDateFormat s = new SimpleDateFormat(dateFormat);
         cal.add(operation, days);
         SimpleDateFormat s2 = new SimpleDateFormat("ddMMyyyy");
         String dateid = s2.format(new Date(cal.getTimeInMillis()));
-        switch(operation)
-        {
+        switch (operation) {
             case Calendar.DAY_OF_YEAR:
-                getdata_loadpiechart(myre,dateid);
+                getdata_loadpiechart(myre, dateid);
                 break;
             case Calendar.MONTH:
-                getdata_loadpiechartmonth(myre,dateid);
+                getdata_loadpiechartmonth(myre, dateid);
                 break;
             case Calendar.YEAR:
-                getdata_loadpiechartyear(myre,dateid);
+                getdata_loadpiechartyear(myre, dateid);
                 break;
         }
 
@@ -251,65 +304,82 @@ public class Dashboard extends Fragment {
     }
 
     public void getdata_loadpiechart(DatabaseReference dr, String dateid) {
-        myref.child(dateid.substring(4,8)).child(dateid.substring(2,4)).addListenerForSingleValueEvent(new ValueEventListener() {
+        myref.child(dateid.substring(4, 8)).child(dateid.substring(2, 4)).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.hasChild(dateid))
-                {
+                if (snapshot.hasChild(dateid)) {
                     ArrayList<Record> rcrds = new ArrayList<>();
 
 
                     try {
                         for (DataSnapshot j : snapshot.child(dateid).getChildren()) {
-                            try { rcrds.add(snapshot.child(dateid).child(j.getKey()).getValue(Record.class));} catch (Exception e) {}
+                            try {
+                                rcrds.add(snapshot.child(dateid).child(j.getKey()).getValue(Record.class));
+                            } catch (Exception e) {
+                            }
                             //Toast.makeText(getActivity(), ""+j.getKey(), Toast.LENGTH_SHORT).show();
                         }
-                    }catch(Exception e){ Toast.makeText(getActivity(), ""+e.getMessage(), Toast.LENGTH_SHORT).show(); }
+                    } catch (Exception e) {
+                        Toast.makeText(getActivity(), "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
 
 
                     float sum = 0;
-                    float fsum= 0,ssum= 0,tsum= 0,osum= 0;
-                    float ff=0,sf=0,tf=0,of=0;
-                    for (Record k: rcrds) {
+                    float fsum = 0, ssum = 0, tsum = 0, osum = 0;
+                    float ff = 0, sf = 0, tf = 0, of = 0;
+                    for (Record k : rcrds) {
 
                         sum = sum + k.getAmmount();
                         String categ = k.getCategory();
-                        switch(categ)
-                        {
+                        switch (categ) {
+                            case "Gift🎁":
+                                fsum = fsum + k.getAmmount();
+                                break;
+                            case "Salary🤑" :
+                                ssum = ssum + k.getAmmount();
+                                break;
+                            case "Interest📈":
+                                tsum = tsum + k.getAmmount();
+                                break;
+                            case "Other🤔" :
+                                osum = osum + k.getAmmount();
+                                break;
+
                             case "Food🍔":
-                                fsum=fsum + k.getAmmount();
+                                fsum = fsum + k.getAmmount();
                                 break;
                             case "Studies📚":
-                                ssum=ssum + k.getAmmount();
+                                ssum = ssum + k.getAmmount();
                                 break;
-                            case "Transport🛺" :
+                            case "Transport🛺":
                                 tsum = tsum + k.getAmmount();
                                 break;
                             case "Other🚬😳":
-                                osum = osum+ k.getAmmount();
+                                osum = osum + k.getAmmount();
                                 break;
                             case "":
                                 break;
                             default:
-                                osum = osum+ k.getAmmount();
+                                osum = osum + k.getAmmount();
                                 break;
 
                         }
 
 
                     }
-                    ff=(fsum/sum);sf=ssum/sum;tf=tsum/sum;of=osum/sum;
+                    ff = (fsum / sum);
+                    sf = ssum / sum;
+                    tf = tsum / sum;
+                    of = osum / sum;
 
-                    centretext = "$"+sum;
+                    centretext = "$" + sum;
                     setupPieChart(centretext);
-                    loadPieChart(ff,sf,tf,of);
-                }
-                else
-                {
-                    Toast.makeText(getActivity(), "No Expenses", Toast.LENGTH_SHORT).show();
-                    centretext = "NO\nExpenses";
+                    loadPieChart(ff, sf, tf, of);
+                } else {
+                    if(getArguments().getString("order").equals("Exepenses")) {
+                    centretext = "NO\nExpenses";}else{centretext = "NO\nINCOME";}
                     setupPieChart(centretext);
-                    loadPieChart(0,0,0,0);
+                    loadPieChart(0, 0, 0, 0);
                 }
 
             }
@@ -322,10 +392,10 @@ public class Dashboard extends Fragment {
     }
 
     public void getdata_loadpiechartmonth(DatabaseReference dr, String dateid) {
-        myref.child(dateid.substring(4,8)).addListenerForSingleValueEvent(new ValueEventListener() {
+        myref.child(dateid.substring(4, 8)).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.hasChild(dateid.substring(2,4))) {
+                if (snapshot.hasChild(dateid.substring(2, 4))) {
 
 
                     try {
@@ -337,19 +407,34 @@ public class Dashboard extends Fragment {
                             ArrayList<Record> rcrds = new ArrayList<>();
                             for (DataSnapshot k : snapshot.child(dateid.substring(2, 4)).child(j.getKey()).getChildren()) {
                                 try {
+
                                     rcrds.add(snapshot.child(dateid.substring(2, 4)).child(j.getKey()).child(k.getKey()).getValue(Record.class));
-                                    //  Toast.makeText(getActivity(), ""+k.getKey(), Toast.LENGTH_SHORT).show();
+                                  //  Toast.makeText(getActivity(), ""+k.getKey(), Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {
                                 }
                             }
 
-                            Toast.makeText(getActivity(), "" + rcrds.size(), Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getActivity(), "" + rcrds.size(), Toast.LENGTH_SHORT).show();
                             for (Record p : rcrds) {
 
                                 sum = sum + p.getAmmount();
 
                                 String categ = p.getCategory();
                                 switch (categ) {
+                                    case "Gift🎁":
+                                        fsum = fsum + p.getAmmount();
+                                        break;
+                                    case "Salary🤑" :
+                                        ssum = ssum + p.getAmmount();
+                                        break;
+                                    case "Interest📈":
+                                        tsum = tsum + p.getAmmount();
+                                        break;
+                                    case "Other🤔" :
+                                        osum = osum + p.getAmmount();
+                                        break;
+                                    case "":
+                                        break;
                                     case "Food🍔":
                                         fsum = fsum + p.getAmmount();
                                         break;
@@ -361,8 +446,6 @@ public class Dashboard extends Fragment {
                                         break;
                                     case "Other🚬😳":
                                         osum = osum + p.getAmmount();
-                                        break;
-                                    case "":
                                         break;
                                     default:
                                         osum = osum + p.getAmmount();
@@ -384,21 +467,16 @@ public class Dashboard extends Fragment {
                         loadPieChart(ff, sf, tf, of);
 
 
-
-                    }catch(Exception e){ Toast.makeText(getActivity(), ""+e.getMessage(), Toast.LENGTH_SHORT).show(); }
-
-
-
+                    } catch (Exception e) {
+                        Toast.makeText(getActivity(), "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
 
 
-
-                }
-                else
-                {
-                    Toast.makeText(getActivity(), "No Expenses", Toast.LENGTH_SHORT).show();
-                    centretext = "NO\nExpenses";
+                } else {
+                    if(getArguments().getString("order").equals("Exepenses")) {
+                        centretext = "NO\nExpenses";}else{centretext = "NO\nINCOME";}
                     setupPieChart(centretext);
-                    loadPieChart(0,0,0,0);
+                    loadPieChart(0, 0, 0, 0);
                 }
 
             }
@@ -410,37 +488,50 @@ public class Dashboard extends Fragment {
         });
     }
 
-
-    public float[] getdata_loadpiechartmonthmod(DatabaseReference dr, String dateid) {
-         arr = new float[5];
-        myref.child(dateid.substring(4,8)).addListenerForSingleValueEvent(new ValueEventListener() {
+    public void getdata_loadpiechartyear(DatabaseReference dr, String dateid) {
+        dr.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.hasChild(dateid.substring(2,4))) {
-
-
-                    try {
-                        float sum = 0;
-                        float fsum = 0, ssum = 0, tsum = 0, osum = 0;
-                        float ff = 0, sf = 0, tf = 0, of = 0;
-                        for (DataSnapshot j : snapshot.child(dateid.substring(2, 4)).getChildren()) {
-                            //  Toast.makeText(getActivity(), ""+j.getKey(), Toast.LENGTH_SHORT).show();
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                dr.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.hasChild(dateid.substring(4,8)))
+                        {
                             ArrayList<Record> rcrds = new ArrayList<>();
-                            for (DataSnapshot k : snapshot.child(dateid.substring(2, 4)).child(j.getKey()).getChildren()) {
-                                try {
-                                    rcrds.add(snapshot.child(dateid.substring(2, 4)).child(j.getKey()).child(k.getKey()).getValue(Record.class));
-                                    //  Toast.makeText(getActivity(), ""+k.getKey(), Toast.LENGTH_SHORT).show();
-                                } catch (Exception e) {
-                                }
-                            }
+                            float ysum=0, fsum=0, ssum=0, tsum =0, osum=0,fy=0,sy=0,ty=0,oy=0;
 
-                            Toast.makeText(getActivity(), "" + rcrds.size(), Toast.LENGTH_SHORT).show();
+                            for (DataSnapshot i : snapshot.child(dateid.substring(4,8)).getChildren())
+                            {
+
+                                for( DataSnapshot j : i.getChildren())
+                                {
+                                    for (DataSnapshot k: j.getChildren())
+                                    {
+                                        try {
+                                                rcrds.add(j.child(k.getKey()).getValue(Record.class));
+                                            } catch (Exception e) {}
+                                    }
+                                }
+
+                            }
                             for (Record p : rcrds) {
 
-                                sum = sum + p.getAmmount();
+                                ysum = ysum + p.getAmmount();
 
                                 String categ = p.getCategory();
                                 switch (categ) {
+                                    case "Gift🎁":
+                                        fsum = fsum + p.getAmmount();
+                                        break;
+                                    case "Salary🤑" :
+                                        ssum = ssum + p.getAmmount();
+                                        break;
+                                    case "Interest📈":
+                                        tsum = tsum + p.getAmmount();
+                                        break;
+                                    case "Other🤔" :
+                                        osum = osum + p.getAmmount();
+                                        break;
                                     case "Food🍔":
                                         fsum = fsum + p.getAmmount();
                                         break;
@@ -463,73 +554,32 @@ public class Dashboard extends Fragment {
 
                             }
 
+                            fy = fsum / ysum;
+                            sy = ssum / ysum;
+                            ty = tsum / ysum;
+                            oy = osum / ysum;
+                            centretext = "$" + ysum;
+                            setupPieChart(centretext);
+                            loadPieChart(fy, sy, ty, oy);
 
                         }
-
-                        ff = fsum / sum;
-                        sf = ssum / sum;
-                        tf = tsum / sum;
-                        of = osum / sum;
-                        centretext = "$" + sum;
-                        arr[0] = sum;
-                        arr[1]=ff;arr[2]=sf;arr[3]=tf;arr[4]=of;
-
-
-                    }catch(Exception e){ Toast.makeText(getActivity(), ""+e.getMessage(), Toast.LENGTH_SHORT).show(); }
-
-
-
-
-
-
-                }
-                else
-                {
-                    arr[0]=0;arr[1]=0;arr[2]=0;arr[3]=0;arr[4]=0;
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-        return arr;
-    }
-
-    public void getdata_loadpiechartyear(DatabaseReference dr, String dateid) {
-        myref.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.hasChild(dateid.substring(4,8))) {
-                    float ysum=0,fy=0,ty=0,sy=0,oy=0, a[];
-                    for(DataSnapshot i : snapshot.child(dateid.substring(4,8)).getChildren())
-                    {
-
+                        else {
+                            if(getArguments().getString("order").equals("Exepenses")) {
+                                centretext = "NO\nExpenses";}else{centretext = "NO\nINCOME";}
+                            setupPieChart(centretext);
+                            loadPieChart(0, 0, 0, 0);
+                        }
                     }
 
-                }
-                else
-                {
-                    Toast.makeText(getActivity(), "No Expenses", Toast.LENGTH_SHORT).show();
-                    centretext = "NO\nExpenses";
-                    setupPieChart(centretext);
-                    loadPieChart(0,0,0,0);
-                }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
+                    }
+                });
             }
         });
+
     }
-
-
-
-
 
 
 

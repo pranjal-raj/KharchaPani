@@ -11,18 +11,19 @@
         <entry key="..\:/Users/HP/AndroidStudioProjects/MyApplication/app/src/main/res/drawable/ic_pencil.xml" value="0.11096491228070175" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/MyApplication/app/src/main/res/drawable/ic_scan.xml" value="0.11096491228070175" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/MyApplication/app/src/main/res/drawable/plus.xml" value="0.1" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/MyApplication/app/src/main/res/drawable/tab_color.xml" value="0.11096491228070175" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/MyApplication/app/src/main/res/drawable/top_border.xml" value="0.11096491228070175" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/MyApplication/app/src/main/res/font/font.xml" value="0.1" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/MyApplication/app/src/main/res/layout/activity_login.xml" value="0.18201754385964913" />
-        <entry key="..\:/Users/HP/AndroidStudioProjects/MyApplication/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/MyApplication/app/src/main/res/layout/activity_main.xml" value="0.16" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/MyApplication/app/src/main/res/layout/activity_onboarding_screen.xml" value="0.264" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/MyApplication/app/src/main/res/layout/activity_records.xml" value="0.19912280701754387" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/MyApplication/app/src/main/res/layout/activity_register.xml" value="0.264" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/MyApplication/app/src/main/res/layout/dialog.xml" value="0.264" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_add_entry.xml" value="0.176" />
-        <entry key="..\:/Users/HP/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_add_expense.xml" value="0.3498542274052478" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_add_expense.xml" value="0.3270440251572327" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_add_income.xml" value="0.264" />
-        <entry key="..\:/Users/HP/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_dashboard.xml" value="0.264" />
+        <entry key="..\:/Users/HP/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_dashboard.xml" value="0.2" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_on_boarding_features.xml" value="0.2" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/MyApplication/app/src/main/res/layout/fragment_onboardingfeaturesfragment.xml" value="0.2" />
         <entry key="..\:/Users/HP/AndroidStudioProjects/MyApplication/app/src/main/res/layout/record_item.xml" value="0.4" />
