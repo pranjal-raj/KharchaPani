@@ -18,6 +18,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.LegendEntry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
@@ -56,6 +58,8 @@ public class Dashboard extends Fragment {
     AppCompatButton prev, next;
     TextView dateview;
     String centretext;
+    ArrayList<LegendEntry> legendEntries =new ArrayList<>();
+    LegendEntry legendEntry = new LegendEntry();
     TextView cashbal, bankbal;
     float arr[];
 
@@ -205,11 +209,18 @@ public class Dashboard extends Fragment {
     public void setupPieChart(String centretext) {
         piechart.setDrawHoleEnabled(true);
         piechart.setUsePercentValues(true);
-        piechart.setEntryLabelColor(Color.BLACK);
+        piechart.setEntryLabelColor(Color.WHITE);
         piechart.setEntryLabelTextSize(8f);
         piechart.setCenterText(centretext);
         piechart.setCenterTextSize(16f);
         piechart.setCenterTextColor(Color.parseColor("#5D6541"));
+        Legend legend = piechart.getLegend();
+
+        legend.setVerticalAlignment(Legend.LegendVerticalAlignment.CENTER);
+        legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
+        legend.setOrientation(Legend.LegendOrientation.VERTICAL);
+        legend.setDrawInside(false);
+        //legend.setCustom(legendEntries);
 
 
         piechart.getDescription().setEnabled(false);
@@ -217,6 +228,7 @@ public class Dashboard extends Fragment {
 
     public void loadPieChart(float ff, float sf, float tf, float of) {
         ArrayList<PieEntry> entries = new ArrayList<>();
+        legendEntries.clear();
         String food = "", studies = "", transport = "", other = "";
         if(getArguments().getString("order").equals("Exepenses")) {
             if (ff != 0) {
@@ -236,6 +248,27 @@ public class Dashboard extends Fragment {
             entries.add(new PieEntry(tf, transport));
             entries.add(new PieEntry(of, other));
             entries.add(new PieEntry(1 - (ff + sf + tf + of)));
+
+
+            LegendEntry legendEntry1 = new LegendEntry();
+            legendEntry1.label="Food" + " " + Math.ceil(ff*100)+"%";
+            legendEntry1.formColor = Color.parseColor("#E99F28");
+            legendEntries.add(legendEntry1);
+            LegendEntry legendEntry2 = new LegendEntry();
+            legendEntry2.label="Studies" + " " + Math.ceil(sf*100)+"%";
+            legendEntry2.formColor = Color.parseColor("#316ACC");
+            legendEntries.add(legendEntry2);
+            LegendEntry legendEntry3 = new LegendEntry();
+            legendEntry3.label="Transpotsport" + " " + Math.ceil(tf*100)+"%";
+            legendEntry3.formColor = Color.parseColor("#9270F3");
+            legendEntries.add(legendEntry3);
+            LegendEntry legendEntry4 = new LegendEntry();
+            legendEntry4.label="Other" + " " + Math.ceil(of*100)+"%";
+            legendEntry4.formColor = Color.parseColor("#80F499");
+            legendEntries.add(legendEntry4);
+
+            piechart.getLegend().setCustom(legendEntries);
+            legendEntries.clear();
         }
         else {
             if (ff != 0) {
@@ -255,16 +288,40 @@ public class Dashboard extends Fragment {
             entries.add(new PieEntry(tf, transport));
             entries.add(new PieEntry(of, other));
             entries.add(new PieEntry(1 - (ff + sf + tf + of)));
+
+            LegendEntry legendEntry1 = new LegendEntry();
+            legendEntry1.label="Gift" + " " + Math.ceil(ff*100)+"%";
+            legendEntry1.formColor = Color.parseColor("#E99F28");
+            legendEntries.add(legendEntry1);
+            LegendEntry legendEntry2 = new LegendEntry();
+            legendEntry2.label="Salary" + " " + Math.ceil(sf*100)+"%";
+            legendEntry2.formColor = Color.parseColor("#316ACC");
+            legendEntries.add(legendEntry2);
+            LegendEntry legendEntry3 = new LegendEntry();
+            legendEntry3.label="Interest" + " " + Math.ceil(tf*100)+"%";
+            legendEntry3.formColor = Color.parseColor("#9270F3");
+            legendEntries.add(legendEntry3);
+            LegendEntry legendEntry4 = new LegendEntry();
+            legendEntry4.label="Other" + " " + Math.ceil(of*100)+"%";
+            legendEntry4.formColor = Color.parseColor("#80F499");
+            legendEntries.add(legendEntry4);
+            piechart.getLegend().setCustom(legendEntries);
+            legendEntries.clear();
+
+
         }
+
+
+
+
 
 
         ArrayList<Integer> colors = new ArrayList<>();
-        for (int color : ColorTemplate.MATERIAL_COLORS) {
-            colors.add(color);
-        }
-        for (int color : ColorTemplate.VORDIPLOM_COLORS) {
-            colors.add(color);
-        }
+        colors.add(Color.parseColor("#E99F28"));
+        colors.add(Color.parseColor("#316ACC"));
+        colors.add(Color.parseColor("#9270F3"));
+        colors.add(Color.parseColor("#80F499"));
+        colors.add(Color.parseColor("#5C324525"));
         PieDataSet piedataset = new PieDataSet(entries, "Expenses");
         piedataset.setColors(colors);
 

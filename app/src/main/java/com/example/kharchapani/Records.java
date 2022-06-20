@@ -44,7 +44,7 @@ public class Records extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_records);
         FirebaseDatabase fb = FirebaseDatabase.getInstance();
-        myref2 = fb.getReference().child("pranjal@gmail").child("Exepenses");
+        myref2 = fb.getReference().child("pranjal@gmail").child(getIntent().getStringExtra("type"));
         recyclerView = findViewById(R.id.recyclerView);
         getData(myref2);
 

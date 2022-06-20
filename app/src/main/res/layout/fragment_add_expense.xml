@@ -175,20 +175,20 @@
             app:chipStrokeWidth="2dp"
             app:chipStrokeColor="#9270F3"
             />
+
         <com.google.android.material.chip.Chip
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Other🚬😳"
             android:checkable="true"
             android:clickable="true"
             android:focusable="true"
-            app:chipBackgroundColor="@color/white"
+            android:text="Other🚬😳"
             android:textColor="@color/black"
             android:textSize="10dp"
 
-            app:chipStrokeWidth="2dp"
+            app:chipBackgroundColor="@color/white"
             app:chipStrokeColor="#80F499"
-            />
+            app:chipStrokeWidth="2dp" />
 
 
 

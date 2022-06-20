@@ -110,12 +110,24 @@ public class MainActivity extends AppCompatActivity {
                 //  tabLayout.selectTab(tabLayout.getTabAt(position));
             }
         });
-        Button btn = findViewById(R.id.show_records);
-        btn.setOnClickListener(new View.OnClickListener() {
+        AppCompatButton show_expenses = findViewById(R.id.show_expenses);
+        show_expenses.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 Intent i = new Intent(MainActivity.this, Records.class);
+                i.putExtra("type", "Exepenses");
+                startActivity(i);
+            }
+        });
+
+        AppCompatButton show_income = findViewById(R.id.show_income);
+        show_income.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent i = new Intent(MainActivity.this, Records.class);
+                i.putExtra("type", "Income");
                 startActivity(i);
             }
         });

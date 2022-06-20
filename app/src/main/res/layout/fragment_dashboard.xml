@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
 
     android:layout_width="match_parent"
-    android:layout_height="700dp"
+    android:layout_height="800dp"
     >
 
     <com.google.android.material.tabs.TabLayout
@@ -84,7 +84,8 @@
         android:layout_marginStart="16dp"
         android:text="GO TO STATISTICS"
         android:textColor="@color/black"
-        app:layout_constraintVertical_bias="0.980"
+        android:layout_marginTop="10dp"
+        app:layout_constraintVertical_bias="0.970"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -95,12 +96,11 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginTop="60dp"
-        android:layout_marginStart="20dp"
         android:background="@drawable/prev"
         android:scaleX="0.67"
         android:scaleY="0.67"
         app:layout_constraintEnd_toStartOf="@+id/linearLayout"
-
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
@@ -165,6 +165,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="bottom|end"
+
                 android:backgroundTint="#68000000"
                 android:clipChildren="false"
                 android:foregroundGravity="bottom"

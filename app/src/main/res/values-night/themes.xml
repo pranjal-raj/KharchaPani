@@ -23,6 +23,14 @@
         <item name="fontFamily">@font/radio_canada</item>
     </style>
 
+    <style name="tab3" parent="@android:style/TextAppearance.Widget.TabWidget">
+        <item name="tabSelectedTextColor">@color/white</item>
+        <item name="tabTextColor">#C3A0A19C</item>
+        <item name="font">@font/magra</item>
+        <item name="fontFamily">@font/magra</item>
+        <item name="android:textSize" >20dp</item>
+    </style>
+
 
 
     <style name="CustomChipChoice" parent="@style/Widget.MaterialComponents.Chip.Choice">
