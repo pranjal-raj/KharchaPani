@@ -9,10 +9,19 @@ public class Record {
     String category;
     int openingbal, closingbal;
     String id;
+    String type;
     public Record() {
     }
 
-    public Record(String date, String account, int ammount, int openingbal, int closingbal, String category, String id) {
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Record(String date, String account, int ammount, int openingbal, int closingbal, String category, String id, String type) {
         this.date = date;
         this.ammount = ammount;
         this.category = category;
@@ -20,6 +29,7 @@ public class Record {
         this.account = account;
         this.openingbal = openingbal;
         this.closingbal = closingbal;
+        this.type = type;
     }
 
     public String getDate() {

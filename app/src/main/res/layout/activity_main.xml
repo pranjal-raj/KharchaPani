@@ -9,14 +9,15 @@
 
 
     <ImageButton
-        android:id="@+id/menubtn"
+        android:id="@+id/logoutbtn"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:backgroundTint="#00FFFFFF"
-        android:src="@drawable/menu"
+        android:src="@drawable/logout"
         android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:clickable="true"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
@@ -28,22 +29,11 @@
         android:backgroundTint="#00FFFFFF"
         android:scaleType="fitCenter"
         android:src="@drawable/print"
-        app:layout_constraintBottom_toBottomOf="@+id/bankbal"
-        app:layout_constraintStart_toEndOf="@+id/bankbal"
-        app:layout_constraintTop_toTopOf="@+id/bankbal"
-
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <ImageButton
-        android:id="@+id/userbtn"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:backgroundTint="#00FFFFFF"
-        android:scaleType="fitCenter"
-        android:src="@drawable/user"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="SpeakableTextPresentCheck" />
+
+
 
     <TextView
         android:id="@+id/textView"
@@ -134,7 +124,8 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="165dp"
         android:layout_height="14dp"
-
+        android:progress="43"
+        android:progressTint="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="@+id/budgetbtn"
         app:layout_constraintStart_toStartOf="@+id/cash"
         app:layout_constraintTop_toTopOf="@+id/budgetbtn" />
@@ -279,7 +270,7 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="52dp"
                         android:fontFamily="@font/monomaniac_one"
-                        android:text="Your Last Added Record"
+                        android:text="Your Last Added Record : "
                         android:textColor="#565E3B"
                         android:textSize="18sp"
                         app:layout_constraintStart_toStartOf="parent"

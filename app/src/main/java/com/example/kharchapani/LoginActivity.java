@@ -5,7 +5,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,7 +39,20 @@ public class LoginActivity extends AppCompatActivity {
         fb = FirebaseDatabase.getInstance();
         dr = fb.getReference();
 
-
+        SharedPreferences sharedPreferences = getSharedPreferences("one_time_details", Context.MODE_PRIVATE);
+        Toast.makeText(getApplicationContext(), ""+sharedPreferences.getBoolean("first_time?", true), Toast.LENGTH_SHORT).show();
+        if(sharedPreferences.getBoolean("first_time?", true))
+        {
+            Intent i = new Intent(LoginActivity.this , OnboardingScreen.class);
+            startActivity(i);
+        }
+        Boolean logged =  sharedPreferences.getBoolean("Logged?", false);
+        if(logged)
+        {
+            Intent i = new Intent(LoginActivity.this , MainActivity.class);
+            startActivity(i);
+        }
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         logbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,6 +69,9 @@ public class LoginActivity extends AppCompatActivity {
 
                                         Intent i = new Intent(LoginActivity.this, MainActivity.class);
                                         String name = email_log.getText().toString().substring(0, (email_log.getText().toString().indexOf(".")));
+                                        editor.putString("current_user",name);
+                                        editor.putBoolean("Logged?",true);
+                                        editor.commit();
                                         i.putExtra("name", name);
                                         startActivity(i);
                                     } else {

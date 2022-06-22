@@ -109,12 +109,15 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.RecordView
         TextView category;
         TextView amount;
         TextView account;
+        TextView openingbal, closingbal;
         View view;
         public RecordViewHolder(@NonNull View itemView) {
             super(itemView);
             category = itemView.findViewById(R.id.rv_categ);
             amount = itemView.findViewById(R.id.rv_amt);
             account = itemView.findViewById(R.id.rv_accn);
+            openingbal = itemView.findViewById(R.id.rv_opbal);
+            closingbal = itemView.findViewById(R.id.rv_closbal);
             view = itemView;
         }
     }
@@ -139,8 +142,10 @@ public class RecordAdapter extends RecyclerView.Adapter<RecordAdapter.RecordView
     @Override
     public void onBindViewHolder(@NonNull RecordViewHolder holder, int position) {
         holder.category.setText(record_arraylist.get(position).getCategory());
-        holder.amount.setText(""+record_arraylist.get(position).getAmmount());
+        holder.amount.setText("₹"+record_arraylist.get(position).getAmmount());
         holder.account.setText(record_arraylist.get(position).getAccount());
+        holder.openingbal.setText("Opening Balance : "+record_arraylist.get(position).getOpeningbal());
+        holder.closingbal.setText("Closing Balance : "+record_arraylist.get(position).getClosingbal());
 
     }
 

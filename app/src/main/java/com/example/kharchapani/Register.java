@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.DialogFragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,6 +57,8 @@ public class Register extends AppCompatActivity {
         regbtn = findViewById(R.id.cirRegisterButton);
         fb = FirebaseDatabase.getInstance();
         dr = fb.getReference();
+        SharedPreferences sharedPreferences = getSharedPreferences("one_time_details", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
 
         currencies.add("INR ₹");currencies.add("USD $"); currencies.add("YEN ¥");
 
@@ -93,6 +97,8 @@ public class Register extends AppCompatActivity {
                                                @Override
                                                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                                                    currency = spinner.getItemAtPosition(i).toString();
+                                                   editor.putString("currency",currency.substring(4,5));
+
                                                    cashedit.setPrefixText(currency.substring(4,5));
                                                    bankedit.setPrefixText(currency.substring(4,5));
                                                }
@@ -113,8 +119,14 @@ public class Register extends AppCompatActivity {
                                                     Intent i = new Intent(Register.this, MainActivity.class);
                                                     Toast.makeText(getApplicationContext(), ""+email.getText().toString(), Toast.LENGTH_SHORT).show();
                                                    String name = email.getText().toString().substring(0, (email.getText().toString().lastIndexOf(".")));
-                                                   i.putExtra("name", name);
-                                                   i.putExtra("cashbal", Integer.parseInt(cashbal.getText().toString()));i.putExtra("bankbal", Integer.parseInt(bankbal.getText().toString()));
+                                                   int cashbalance = Integer.parseInt(cashbal.getText().toString());
+                                                   int bankbalance = Integer.parseInt(bankbal.getText().toString());
+                                                   FirebaseDatabase.getInstance().getReference().child(name).child("cashbal").setValue(cashbalance);
+                                                    FirebaseDatabase.getInstance().getReference().child(name).child("bankbal").setValue(bankbalance);
+                                                    editor.putString("username",name);
+                                                    editor.putString("current_user",name);
+                                                    editor.putBoolean("Logged?",true);
+                                                    editor.commit();
                                                    startActivity(i);
                                                 }
                                             });

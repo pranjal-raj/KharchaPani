@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +37,7 @@ public class Records extends AppCompatActivity {
     DatabaseReference myref2;
     RecordViewAdapter adapter;
     ArrayList<RecordsView> recordsViews = new ArrayList<>();
+    String name;
     ArrayList<DateItem> dateItems= new ArrayList<>();
 
 
@@ -44,7 +47,9 @@ public class Records extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_records);
         FirebaseDatabase fb = FirebaseDatabase.getInstance();
-        myref2 = fb.getReference().child("pranjal@gmail").child(getIntent().getStringExtra("type"));
+        SharedPreferences sharedPreferences = getSharedPreferences("one_time_details", Context.MODE_PRIVATE);
+        name = sharedPreferences.getString("current_user", "");
+        myref2 = fb.getReference().child(name).child(getIntent().getStringExtra("type"));
         recyclerView = findViewById(R.id.recyclerView);
         getData(myref2);
 

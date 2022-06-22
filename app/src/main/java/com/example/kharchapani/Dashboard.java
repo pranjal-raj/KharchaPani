@@ -1,5 +1,8 @@
 package com.example.kharchapani;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.YuvImage;
 import android.icu.text.SimpleDateFormat;
@@ -62,6 +65,7 @@ public class Dashboard extends Fragment {
     LegendEntry legendEntry = new LegendEntry();
     TextView cashbal, bankbal;
     float arr[];
+    String name;
 
 
     public Dashboard() {
@@ -92,9 +96,18 @@ public class Dashboard extends Fragment {
         prev = view.findViewById(R.id.prev_btn);
         next = view.findViewById(R.id.next_btn);
         dateview = view.findViewById(R.id.dateview);
+        TextView stats = view.findViewById(R.id.stats);
 
+        stats.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), Analytics.class ));
+            }
+        });
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("one_time_details", Context.MODE_PRIVATE);
+        name = sharedPreferences.getString("current_user", "");
         firebaseDatabase = FirebaseDatabase.getInstance();
-        myref = firebaseDatabase.getReference().child("pranjal@gmail").child(type);
+        myref = firebaseDatabase.getReference().child(name).child(type);
         // dateview.setText(getCalculatedDate(calendar,"MMMM dd, yyyy",0));
         TabLayout tabLayout = view.findViewById(R.id.linearLayout);
         tabLayout.selectTab(tabLayout.getTabAt(0));

@@ -2,7 +2,9 @@ package com.example.kharchapani;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.icu.util.Calendar;
@@ -57,6 +59,7 @@ public class add_expense extends Fragment {
     String account;
     int accn_chip_id;
     int categ_chip_id;
+    String name;
 
     public add_expense() {
 
@@ -80,9 +83,11 @@ public class add_expense extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("one_time_details", Context.MODE_PRIVATE);
+        name = sharedPreferences.getString("current_user", "");
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference dataref = firebaseDatabase.getReference("pranjal@gmail");
+        DatabaseReference dataref = firebaseDatabase.getReference(name);
 
 
         //This the Selection of categories using Chips
@@ -274,8 +279,9 @@ public class add_expense extends Fragment {
                         try {
                             amount = Integer.parseInt(amount_editText.getText().toString());
                             id = dataref.push().getKey();
-                            Record record = new Record(sdf2.format(calender_select.getTime()), account, amount, openingbal, (openingbal-amount), category,id);
+                            Record record = new Record(sdf2.format(calender_select.getTime()), account, amount, openingbal, (openingbal-amount), category,id,"Expense");
                             dataref.child("Exepenses").child(dateid.substring(4,8)).child(dateid.substring(2,4)).child(dateid).child(id).setValue(record);
+                            dataref.child("LastRecord").setValue(record);
 
                                 dataref.addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override

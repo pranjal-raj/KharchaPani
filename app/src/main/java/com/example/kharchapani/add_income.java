@@ -271,7 +271,7 @@ public class add_income extends Fragment {
                     try {
                         amount = Integer.parseInt(amount_editText.getText().toString());
                         id = dataref.push().getKey();
-                        Record record = new Record(sdf2.format(calender_select.getTime()), account, amount, openingbal, (openingbal+amount), category,id);
+                        Record record = new Record(sdf2.format(calender_select.getTime()), account, amount, openingbal, (openingbal+amount), category,id,"Income");
                         dataref.child("Income").child(dateid.substring(4,8)).child(dateid.substring(2,4)).child(dateid).child(id).setValue(record);
 
                         dataref.addListenerForSingleValueEvent(new ValueEventListener() {
