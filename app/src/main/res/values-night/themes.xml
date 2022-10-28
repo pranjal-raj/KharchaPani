@@ -1,0 +1,40 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.MyApplication" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/purple_200</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_200</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+0
+
+    </style>
+
+    <style name="tab2" parent="@android:style/TextAppearance.Widget.TabWidget">
+        <item name="tabSelectedTextColor">@color/chipgreen</item>
+        <item name="tabTextColor">#5D6541</item>
+        <item name="font">@font/radio_canada</item>
+        <item name="fontFamily">@font/radio_canada</item>
+    </style>
+
+    <style name="tab3" parent="@android:style/TextAppearance.Widget.TabWidget">
+        <item name="tabSelectedTextColor">@color/white</item>
+        <item name="tabTextColor">#C3A0A19C</item>
+        <item name="font">@font/magra</item>
+        <item name="fontFamily">@font/magra</item>
+        <item name="android:textSize" >20dp</item>
+    </style>
+
+
+
+    <style name="CustomChipChoice" parent="@style/Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@color/background_color_chip_state_list</item>
+        <item name="android:textColor">@color/text_color_chip_state_list</item>
+    </style>
+</resources>

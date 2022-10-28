@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@color/white"
+tools:context=".add_expense">
+
+<ImageView
+    android:id="@+id/imageView"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:src="@drawable/top_border"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/monomaniac_one"
+        android:text="Add New Item"
+        android:textColor="#F5FCDC"
+        android:textSize="26sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.5" />
+
+<ImageButton
+    android:id="@+id/imageView2"
+    android:layout_width="45dp"
+    android:layout_height="45dp"
+    android:layout_marginStart="14dp"
+    android:layout_marginTop="16dp"
+    android:backgroundTint="#00000000"
+    android:scaleType="fitXY"
+    android:scaleX="2.5"
+    android:scaleY="2"
+    android:src="@drawable/backarrow"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+<androidx.appcompat.widget.AppCompatEditText
+    android:id="@+id/amount"
+    android:layout_width="80dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="40dp"
+    android:ems="10"
+    android:textColor="@color/black"
+    android:backgroundTint="#2F932B"
+    android:inputType="number"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/imageView" />
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="$"
+    android:textSize="20dp"
+    android:textColor="@color/black"
+    app:layout_constraintTop_toTopOf="@+id/amount"
+    app:layout_constraintBottom_toBottomOf="@+id/amount"
+    app:layout_constraintStart_toEndOf="@id/amount"
+    android:layout_marginStart="5dp"/>
+
+<TextView
+    android:id="@+id/textView5"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="28dp"
+    android:text=" Account"
+    android:paddingStart="1dp"
+    android:textColor="@color/black"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/amount" />
+
+<com.google.android.material.chip.ChipGroup
+    android:id="@+id/accnchip"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintStart_toStartOf="@+id/textView5"
+    app:layout_constraintTop_toBottomOf="@+id/textView5"
+    app:singleSelection="true">
+
+    <com.google.android.material.chip.Chip
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:chipBackgroundColor="@color/white"
+        android:text="Cash💵"
+        android:checkable="true"
+        android:textColor="@color/black"
+        app:chipStrokeColor="#1A932A"
+        app:chipStrokeWidth="2dp" />
+
+    <com.google.android.material.chip.Chip
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:chipBackgroundColor="@color/white"
+        android:text="Bank🏦"
+        android:checkable="true"
+        android:textColor="@color/black"
+        app:chipStrokeColor="#1A932A"
+        app:chipStrokeWidth="2dp" />
+</com.google.android.material.chip.ChipGroup>
+
+<TextView
+    android:id="@+id/textView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="64dp"
+    android:text=" Categories"
+    android:textColor="@color/black"
+    app:layout_constraintStart_toStartOf="@+id/textView5"
+    app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+<com.google.android.material.chip.ChipGroup
+    android:id="@+id/categchip"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintStart_toStartOf="@+id/textView"
+    app:layout_constraintTop_toBottomOf="@+id/textView"
+    app:singleSelection="true">
+
+    <com.google.android.material.chip.Chip
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gift🎁"
+        app:chipBackgroundColor="@color/white"
+        android:textColor="@color/black"
+
+        android:checkable="true"
+        android:clickable="true"
+        android:focusable="true"
+
+        app:chipStrokeWidth="2dp"
+        app:chipStrokeColor="#E99F28"
+        />
+    <com.google.android.material.chip.Chip
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Salary🤑"
+        app:chipBackgroundColor="@color/white"
+        android:textColor="@color/black"
+
+
+        android:checkable="true"
+        android:clickable="true"
+        android:focusable="true"
+        app:chipStrokeWidth="2dp"
+        app:chipStrokeColor="#316ACC"
+        />
+    <com.google.android.material.chip.Chip
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Interest📈"
+        app:chipBackgroundColor="@color/white"
+        android:textColor="@color/black"
+
+
+        android:checkable="true"
+        android:clickable="true"
+        android:focusable="true"
+        app:chipStrokeWidth="2dp"
+        app:chipStrokeColor="#9270F3"
+        />
+    <com.google.android.material.chip.Chip
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Other🤔"
+        android:checkable="true"
+        android:clickable="true"
+        android:focusable="true"
+        app:chipBackgroundColor="@color/white"
+        android:textColor="@color/black"
+        android:textSize="10dp"
+
+        app:chipStrokeWidth="2dp"
+        app:chipStrokeColor="#80F499"
+        />
+
+
+
+
+</com.google.android.material.chip.ChipGroup>
+
+    <EditText
+        android:id="@+id/categedittext2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:backgroundTint="#2F932B"
+        android:hint="Enter Other (Optional)"
+        android:textColorHint="#BC717171"
+       android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@+id/categchip"
+        app:layout_constraintTop_toBottomOf="@+id/categchip"/>
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+MORE"
+        app:layout_constraintStart_toStartOf="@+id/categchip"
+        app:layout_constraintTop_toBottomOf="@+id/categedittext2" />
+
+    <Button
+        android:id="@+id/dateselect2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="272dp"
+        android:text="+MORE"
+        app:layout_constraintBottom_toBottomOf="@+id/button2"
+        app:layout_constraintStart_toStartOf="@+id/categchip"
+        app:layout_constraintTop_toTopOf="@+id/button2" />
+
+    <com.google.android.material.chip.ChipGroup
+   android:id="@+id/datechip2"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.0"
+
+    app:layout_constraintStart_toStartOf="@+id/button2"
+    app:layout_constraintTop_toBottomOf="@+id/button2"
+    app:singleSelection="true">
+
+    <com.google.android.material.chip.Chip
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        app:chipBackgroundColor="#E3E3E3"
+        app:rippleColor="#9AF190"
+        android:checkable="true"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="Today"
+        />
+    <com.google.android.material.chip.Chip
+        android:layout_marginStart="10dp"
+        android:layout_width="wrap_content"
+        android:textColor="@color/black"
+        app:chipBackgroundColor="#E3E3E3"
+        app:rippleColor="#9AF190"
+        android:checkable="true"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_height="wrap_content"
+        android:text="Yesterday"
+        />
+
+</com.google.android.material.chip.ChipGroup>
+
+<androidx.appcompat.widget.AppCompatButton
+    android:id="@+id/add2"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="384dp"
+    android:text="+ADD"
+    android:textColor="@color/white"
+    android:background="@drawable/button"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.485"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/amount" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

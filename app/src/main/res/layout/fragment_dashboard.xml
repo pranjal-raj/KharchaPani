@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="800dp"
+    >
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:background="#00FFFFFF"
+        app:tabTextColor="@color/black"
+        app:tabIndicatorColor="#ADA1A1A1"
+        app:tabTextAppearance="@style/tab2"
+        app:tabSelectedTextColor="@color/chipgreen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/day_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Day"
+            style="@style/tab2"
+            android:background="@color/black"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="19dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/month_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Month"
+
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="19dp"
+            app:layout_constraintBottom_toBottomOf="@+id/week_btn"
+            app:layout_constraintEnd_toStartOf="@+id/year_btn"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/week_btn"
+            app:layout_constraintTop_toTopOf="@+id/week_btn"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/year_btn"
+            style="tab2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Year"
+
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="19dp"
+            app:layout_constraintBottom_toBottomOf="@+id/month_btn"
+            app:layout_constraintEnd_toStartOf="@+id/period_btn"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/month_btn"
+            app:layout_constraintTop_toTopOf="@+id/month_btn"
+            app:layout_constraintVertical_bias="0.0" />
+
+
+    </com.google.android.material.tabs.TabLayout>
+
+
+
+    <TextView
+        android:id="@+id/stats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="GO TO ANALYTICS"
+        android:textColor="@color/yellow_brown"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/radio_canada"
+        app:layout_constraintVertical_bias="0.970"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chart" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/prev_btn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/prev"
+        android:scaleX="0.67"
+        android:scaleY="0.67"
+        app:layout_constraintEnd_toStartOf="@+id/linearLayout"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/next_btn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="60dp"
+        android:scaleX="0.67"
+        android:scaleY="0.67"
+        android:background="@drawable/next"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.800"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/dateview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/radio_canada"
+        android:text="June 5 - June 11"
+        android:textColor="#5D6541"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/prev_btn"
+        app:layout_constraintEnd_toStartOf="@+id/next_btn"
+        app:layout_constraintStart_toEndOf="@+id/prev_btn"
+        app:layout_constraintTop_toTopOf="@+id/prev_btn" />
+
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/chart"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dateview" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:backgroundTint="#54000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Menu Layout is needed for the overlay to work -->
+        <jahirfiquitiva.libs.fabsmenu.FABsMenuLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            app:fabs_menu_clickableOverlay="true"
+            app:fabs_menu_overlayColor="#48000000">
+
+            <!-- FABs Menu is the main view. It will contain all the items FABs and it create the menu fab itself -->
+            <jahirfiquitiva.libs.fabsmenu.FABsMenu
+                android:id="@+id/fabs_menu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom|end"
+
+                android:backgroundTint="#68000000"
+                android:clipChildren="false"
+                android:foregroundGravity="bottom"
+                app:fab_expandDirection="up"
+                app:fab_labelsPosition="left"
+                app:fab_moreButtonBackgroundColor="#2DA83B"
+                app:fab_moreButtonPlusIcon="@drawable/ic_plus"
+
+                app:fab_moreButtonRippleColor="#88FA7B"
+                app:fab_moreButtonSize="normal">
+
+
+                <jahirfiquitiva.libs.fabsmenu.TitleFAB
+                    android:id="@+id/mini_fab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:backgroundTint="#FFFFFF"
+                    app:fabSize="mini"
+                    app:fab_title="Scan [Beta Mode]"
+                    app:rippleColor="#8DF682"
+                    app:srcCompat="@drawable/ic_scan" />
+
+                <!-- This item will appear just above the menu FAB -->
+                <jahirfiquitiva.libs.fabsmenu.TitleFAB
+                    android:id="@+id/green_fab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    app:backgroundTint="@color/white"
+                    app:fabSize="mini"
+                    app:fab_title="Add Entry Manually"
+                    app:rippleColor="#73ED7E"
+                    app:srcCompat="@drawable/ic_pencil" />
+
+            </jahirfiquitiva.libs.fabsmenu.FABsMenu>
+
+        </jahirfiquitiva.libs.fabsmenu.FABsMenuLayout>
+    </RelativeLayout>
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

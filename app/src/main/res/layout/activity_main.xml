@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@drawable/bgapps">
+
+
+    <ImageButton
+        android:id="@+id/logoutbtn"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:backgroundTint="#00FFFFFF"
+        android:src="@drawable/logout"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:clickable="true"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/printbtn"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="30dp"
+        app:layout_constraintVertical_bias="0.4"
+        android:backgroundTint="#00FFFFFF"
+        android:scaleType="fitCenter"
+        android:src="@drawable/print"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/monomaniac_one"
+        android:text="Balance"
+        android:textColor="#F5FCDC"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.088"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/cashcurr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:fontFamily="@font/pridi"
+        android:text="$"
+        android:textColor="#F5FCDC"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toBottomOf="@+id/cash"
+        app:layout_constraintStart_toEndOf="@+id/cash"
+        app:layout_constraintTop_toTopOf="@+id/cash" />
+
+    <TextView
+        android:id="@+id/cashbal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/pridi"
+        android:text="430"
+        android:textColor="#F5FCDC"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toBottomOf="@+id/cash"
+        app:layout_constraintStart_toEndOf="@+id/cash"
+        app:layout_constraintTop_toTopOf="@+id/cash" />
+
+    <ImageView
+        android:id="@+id/cash"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:srcCompat="@drawable/cash" />
+
+    <ImageView
+        android:id="@+id/bank"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="40dp"
+        app:layout_constraintBottom_toBottomOf="@+id/cashbal"
+        app:layout_constraintStart_toEndOf="@+id/cashbal"
+        app:layout_constraintTop_toTopOf="@+id/cashbal"
+        app:srcCompat="@drawable/bank" />
+
+    <TextView
+        android:id="@+id/bankcurr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:fontFamily="@font/pridi"
+        android:text="$"
+        android:textColor="#F5FCDC"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toBottomOf="@+id/bank"
+        app:layout_constraintStart_toEndOf="@+id/bank"
+        app:layout_constraintTop_toTopOf="@+id/bank" />
+
+    <TextView
+        android:id="@+id/bankbal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/pridi"
+        android:text="430"
+        android:textColor="#F5FCDC"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toBottomOf="@+id/bankcurr"
+        app:layout_constraintStart_toEndOf="@+id/bank"
+        app:layout_constraintTop_toTopOf="@+id/bankcurr" />
+
+    <ProgressBar
+        android:id="@+id/budget"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="165dp"
+        android:layout_height="14dp"
+        android:progress="43"
+        android:progressTint="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="@+id/budgetbtn"
+        app:layout_constraintStart_toStartOf="@+id/cash"
+        app:layout_constraintTop_toTopOf="@+id/budgetbtn" />
+
+    <TextView
+        android:id="@+id/budgetbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/radio_canada"
+        android:text="My Budget Limit"
+        android:textColor="#F5FCDC"
+        android:textSize="17sp"
+        app:layout_constraintStart_toEndOf="@+id/budget"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="205dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+
+            >
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/dasboard"
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="16dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                app:cardCornerRadius="20dp"
+
+                >
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/chartareabg"
+                    android:scaleType="fitXY">
+
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="11dp"
+                        android:fontFamily="@font/monomaniac_one"
+                        android:text="Your Dahsboard"
+                        android:textColor="#F5FCDC"
+                        android:textSize="28sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/tabLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="9dp"
+                        android:backgroundTint="#00000000"
+                        app:tabTextAppearance="@style/tab3"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView4"
+                        app:layout_constraintVertical_bias="0.0">
+
+                        <com.google.android.material.tabs.TabItem
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="EXPENSES" />
+
+                        <com.google.android.material.tabs.TabItem
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="INCOME" />
+
+
+                    </com.google.android.material.tabs.TabLayout>
+
+
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/viewpager2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="380dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/dasboard"
+                android:layout_centerHorizontal="true"
+                android:foregroundGravity="center_horizontal"
+                app:cardCornerRadius="20dp"
+                android:layout_marginBottom="20dp">
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/chartareabg"
+                    >
+
+                    <TextView
+                        android:id="@+id/last_records"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="6dp"
+                        android:fontFamily="@font/monomaniac_one"
+                        android:text="Last Records"
+                        android:textColor="#F5FCDC"
+                        android:textSize="26sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/last_records2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="52dp"
+                        android:fontFamily="@font/monomaniac_one"
+                        android:text="Your Last Added Record : "
+                        android:textColor="#565E3B"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardView"
+                        android:layout_width="360dp"
+
+                        android:layout_height="60dp"
+                        android:backgroundTint="#CD187802"
+                        android:elevation="400dp"
+                        android:outlineAmbientShadowColor="@color/black"
+                        android:outlineSpotShadowColor="#B9939393"
+                        app:cardCornerRadius="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/last_records2"
+                        app:layout_constraintVertical_bias="0">
+
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/rv_categ"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/monomaniac_one"
+                                android:text="Category"
+                                android:textColor="#F5FCDC"
+                                android:textSize="20sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.053"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintVertical_bias="0.201" />
+
+                            <TextView
+                                android:id="@+id/rv_accn"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="1dp"
+                                android:fontFamily="@font/radio_canada"
+                                android:text="Account"
+                                android:textColor="#F5FCDC"
+                                android:textSize="16sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="@+id/rv_categ"
+                                app:layout_constraintTop_toBottomOf="@+id/rv_categ"
+                                app:layout_constraintVertical_bias="0.0" />
+
+                            <TextView
+                                android:id="@+id/rv_amt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginVertical="0dp"
+                                android:fontFamily="@font/magra"
+                                android:text="Amt"
+                                android:textColor="#F5FCDC"
+                                android:textSize="20sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.731"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintVertical_bias="0.201" />
+
+                            <TextView
+                                android:id="@+id/rv_opbal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/radio_canada"
+                                android:text="Opening Balance : $ 530"
+                                android:textColor="#F5FCDC"
+                                android:textSize="10sp"
+                                app:layout_constraintStart_toStartOf="@+id/rv_amt"
+                                app:layout_constraintTop_toBottomOf="@+id/rv_amt" />
+
+                            <TextView
+                                android:id="@+id/rv_closbal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="2dp"
+                                android:fontFamily="@font/radio_canada"
+                                android:text="Closing Balance : $430 "
+                                android:textColor="#F5FCDC"
+                                android:textSize="10sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="@+id/rv_amt"
+                                app:layout_constraintTop_toBottomOf="@+id/rv_opbal" />
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/show_expenses"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/recordviewbutton"
+                        android:text="   VIEW EXPENSES  "
+                        android:textColor="#565E3B"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.145"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/show_income"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/recordviewbutton"
+                        android:text="   VIEW INCOME  "
+                        android:textColor="#565E3B"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.855"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fcont"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="200dp"
+
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>
