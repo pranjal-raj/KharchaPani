@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "897988589",
-    "project_id": "kharchapaani-4f42b",
-    "storage_bucket": "kharchapaani-4f42b.appspot.com"
+    "project_number": "1029178239249",
+    "project_id": "kharcha-pani-857de",
+    "storage_bucket": "kharcha-pani-857de.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:897988589:android:af2cb274355fc65ef2d9e4",
+        "mobilesdk_app_id": "1:1029178239249:android:22f4540fe5c8b8d73a44b0",
         "android_client_info": {
           "package_name": "com.example.kharchapani"
         }
       },
       "oauth_client": [
         {
-          "client_id": "897988589-r1ne5qn6uhmchbjfmsg3oghdi3n65hv7.apps.googleusercontent.com",
+          "client_id": "1029178239249-3fh6vksdogt97glfcmm6jfa46nbpiuhg.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyA_UT_SsClvBLhGsPbx6S5mKQMBja9u7MM"
+          "current_key": "AIzaSyBCNgv9kr2Ujez2cB9WWR7HZpMtnNQsY8Y"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "897988589-r1ne5qn6uhmchbjfmsg3oghdi3n65hv7.apps.googleusercontent.com",
+              "client_id": "1029178239249-3fh6vksdogt97glfcmm6jfa46nbpiuhg.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

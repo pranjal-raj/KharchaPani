@@ -53,53 +53,54 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(i);
         }
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        logbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        logbtn.setOnClickListener(view -> {
 
 
-                try{
+            try{
 
-                    dr.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            if(email_log.getText().toString().indexOf(".")!=-1) {
-                                if (snapshot.child(email_log.getText().toString().substring(0, (email_log.getText().toString().indexOf(".")))).exists()) {
-                                    if (pswd.getText().toString().equals(snapshot.child(email_log.getText().toString().substring(0, (email_log.getText().toString().indexOf(".")))).child("pswd").getValue().toString())) {
+                dr.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                                        Intent i = new Intent(LoginActivity.this, MainActivity.class);
-                                        String name = email_log.getText().toString().substring(0, (email_log.getText().toString().indexOf(".")));
-                                        editor.putString("current_user",name);
-                                        editor.putBoolean("Logged?",true);
-                                        editor.commit();
-                                        i.putExtra("name", name);
-                                        startActivity(i);
-                                    } else {
-                                        Toast.makeText(getApplicationContext(), "Wrong Password", Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                                else {
-                                    Toast.makeText(LoginActivity.this, "Account Not Found Create A New One", Toast.LENGTH_SHORT).show();
+                        if(email_log.getText().toString().indexOf(".")!=-1) {
+
+                            Toast.makeText(getApplicationContext(), "test", Toast.LENGTH_SHORT).show();
+                            if (snapshot.child(email_log.getText().toString().substring(0, (email_log.getText().toString().indexOf(".")))).exists()) {
+                                if (pswd.getText().toString().equals(snapshot.child(email_log.getText().toString().substring(0, (email_log.getText().toString().indexOf(".")))).child("pswd").getValue().toString())) {
+
+                                    Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                                    String name = email_log.getText().toString().substring(0, (email_log.getText().toString().indexOf(".")));
+                                    editor.putString("current_user",name);
+                                    editor.putBoolean("Logged?",true);
+                                    editor.commit();
+                                    i.putExtra("name", name);
+                                    startActivity(i);
+                                } else {
+                                    Toast.makeText(getApplicationContext(), "Wrong Password", Toast.LENGTH_SHORT).show();
                                 }
                             }
-                            else
-                            {
-                                Toast.makeText(getApplicationContext(), "Invalid Email", Toast.LENGTH_SHORT).show();
+                            else {
+                                Toast.makeText(LoginActivity.this, "Account Not Found Create A New One", Toast.LENGTH_SHORT).show();
                             }
                         }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
+                        else
+                        {
+                            Toast.makeText(getApplicationContext(), "Invalid Email", Toast.LENGTH_SHORT).show();
                         }
-                    });
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
 
 
-                }
-                catch(Exception e)
-                {
-                    Toast.makeText(getApplicationContext(), ""+e.getMessage(), Toast.LENGTH_SHORT).show();
-                }
+            }
+            catch(Exception e)
+            {
+                Toast.makeText(getApplicationContext(), ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+
             }
         });
 
